@@ -2,18 +2,28 @@
 import TaskContainer from "./TaskContainer";
 import styles from './index.css';
 import React from "react";
+import axios from "axios";
 
 class TaskContent extends React.Component{
     constructor(props){
         super(props);
-        this.state = {tasks: [{title:"firstTask", id:1}, {title:"secondTask", id:2},{title:"thirdTask", id:3}]}
+        this.state = {tasks: []}
     }
-    addTask(){
+    componentDidMount(){
+        axios.get("http://localhost:8080/task").then(response =>
+        {
+            this.setState({tasks: response.data});
+        }).then(() => console.log("Fetched data"));
+    }
+    async addTask(){
         const textInput = document.getElementById("taskTitleInput");
         if(textInput.value === '')
             alert("Task text is mandatory");
         else{
-            const newState = [...this.state.tasks, {title: textInput.value}];
+            const nextId = this.state.tasks.length + 1;
+            const response = await axios.post("http://localhost:8080/task/add", {title: textInput.value});
+            console.log(response.data);
+            const newState = [...this.state.tasks, {id: response.data.id, title: textInput.value}];
             this.setState({tasks: newState});
             textInput.value = null;
         }
