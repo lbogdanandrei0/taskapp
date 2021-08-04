@@ -8,6 +8,6 @@ export const DELETE_TASK = "task/deleteTask";
 export const DELETE_TASK_SAGA = "task/deleteTask2";
 
 export const fetchTasks = () => ({type: FETCH_TASKS_SAGA});
-export const addNewTaskRedux = () => ({type: ADD_NEW_TASK_SAGA});
+export const addNewTaskRedux = (data) => ({type: ADD_NEW_TASK_SAGA, payload: data});
 export const editExistingTaskRedux = (data) => ({type: EDIT_TASK_SAGA, payload: data});
-export const deleteExistingTaskRedux = (data) => ({type: DELETE_TASK_SAGA, payload: data});
+export const deleteExistingTaskRedux = (data) => ({type: DELETE_TASK, payload: data});

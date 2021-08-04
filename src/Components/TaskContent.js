@@ -19,13 +19,14 @@ class TaskContent extends React.Component{
         if(textInput.value === '')
             alert("Task text is mandatory");
         else{
-            addNewTask(textInput.value)
-            .then((response) => {
-                this.props.addNewTaskRedux(response.data);
-            })
-            .catch((err) => {
-                alert("There was a problem with adding the new task \n"+err.message)
-            });
+            this.props.addNewTaskRedux(textInput.value);
+            // addNewTask(textInput.value)
+            // .then((response) => {
+            //     this.props.addNewTaskRedux(response.data);
+            // })
+            // .catch((err) => {
+            //     alert("There was a problem with adding the new task \n"+err.message)
+            // });
             textInput.value = null;
         }
     }

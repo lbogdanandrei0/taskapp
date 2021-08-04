@@ -19,7 +19,6 @@ export default function appReducer(initialState = taskAppState, action){
                 tasks: newTasks
             }
         case 'app/fetchTasks':
-            console.log(action);
             return{
                 ...initialState,
                 tasks: [...action.fetchedTasks]
