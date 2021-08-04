@@ -1,5 +1,4 @@
 
-
 const taskAppState = {
     tasks: [],
     newTaskTitle: ""
@@ -20,9 +19,10 @@ export default function appReducer(initialState = taskAppState, action){
                 tasks: newTasks
             }
         case 'app/fetchTasks':
+            console.log(action);
             return{
                 ...initialState,
-                tasks: [...action.payload]
+                tasks: [...action.fetchedTasks]
             }
         case 'task/deleteTask':
             return{

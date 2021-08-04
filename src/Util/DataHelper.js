@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/task";
-const GET_TASK_URI = "/";
-const PUT_UPDATE_TASK_URI = "/update";
-const POST_ADD_TASK_URI = "/add";
-const DELETE_TASK_URI = "/delete";
+export const BASE_URL = "http://localhost:8080/task";
+export const GET_TASK_URI = "/";
+export const PUT_UPDATE_TASK_URI = "/update";
+export const POST_ADD_TASK_URI = "/add";
+export const DELETE_TASK_URI = "/delete";
 
 export async function getAllTasks(){
     const tasks = await axios.get(BASE_URL + GET_TASK_URI);
