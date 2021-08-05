@@ -1,0 +1,65 @@
+html{
+  width: 100%;
+  height: 100%;
+}
+body{
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#root{
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+}
+
+.taskContent{
+  background-color: rgb(102, 97, 97);
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.taskContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.taskHeader{
+  text-align: center;
+  color: rgb(10,0,125);
+  border-bottom: 3px dashed black;
+}
+
+.taskPane{
+  border-bottom: 1px solid blue;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.taskActions{
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+header{
+  align-self: center;
+  text-align: center;
+}
+
+footer{
+  text-align: center;
+}
+
+.padding{
+  flex-grow: 5;
+}

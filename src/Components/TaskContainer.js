@@ -1,6 +1,5 @@
 import TaskTemplate from "./TaskTemplate";
 
-import styles from './index.css';
 import React from "react";
 import { bindActionCreators } from 'redux'
 import {connect} from "react-redux";
@@ -20,10 +19,8 @@ class TaskContainer extends React.Component{
                     {
                     this.props.tasks.map((task) => {
                         return (
-                        <div key = {task.id} className={styles.taskContainer}>
-                            <TaskTemplate onChange={this.onChangeTask.bind(this)} onDelete={this.onDeleteTask.bind(this)} title={task.title} id={task.id} />
-                        </div>);
-                    }) 
+                        <TaskTemplate key = {task.id} onChange={this.onChangeTask.bind(this)} onDelete={this.onDeleteTask.bind(this)} title={task.title} id={task.id} />
+                    )})
                     }
                 </div>
     }
