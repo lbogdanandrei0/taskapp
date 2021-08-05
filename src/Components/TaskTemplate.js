@@ -4,7 +4,7 @@ import ButtonTemplate from "./ButtonTemplate";
 class TaskTemplate extends React.Component{
     constructor(props){
         super(props);
-        this.state = {editing: false, title: this.props.title};
+        this.state = {editing: false};
     }
     editTask(){
         this.setState({editing: true});
@@ -14,13 +14,14 @@ class TaskTemplate extends React.Component{
         if(input.value === '' || input.value.trim().length === 0)
             //alert("Task title is mandatory");
         ;
-        else{
-            if(this.props.onChange(this.props.id, input.value) !== false){
-                this.setState({title: input.value});
-            }else{
-                alert("Something went wrong");
-            }
-        }
+        this.props.onChange(this.props.id, input.value);
+        // else{
+        //     if(this.props.onChange(this.props.id, input.value) !== false){
+        //         this.setState({title: input.value});
+        //     }else{
+        //         alert("Something went wrong");
+        //     }
+        // }
         this.setState({editing: false});
     }
     deleteTask(){
@@ -30,7 +31,7 @@ class TaskTemplate extends React.Component{
         if(!this.state.editing)
             return (
                 <div className="taskPane">
-                    <div className="taskTitle">{this.state.title}</div>
+                    <div className="taskTitle">{this.props.title}</div>
                     <ButtonTemplate buttonAction={() => this.editTask()} buttonType="edit" buttonText="Edit" />
                     <ButtonTemplate buttonAction={() => this.deleteTask()} buttonType="delete" buttonText="Delete" />
                 </div> 

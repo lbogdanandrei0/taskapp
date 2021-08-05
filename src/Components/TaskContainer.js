@@ -2,17 +2,18 @@ import TaskTemplate from "./TaskTemplate";
 
 import styles from './index.css';
 import React from "react";
-import { editExistingTask } from "../Util/DataHelper";
+import { bindActionCreators } from 'redux'
+import {connect} from "react-redux";
+import { editExistingTaskAsync } from "../Redux/actions";
 
 class TaskContainer extends React.Component{
     onDeleteTask(taskId){
-        console.log(taskId);
         this.props.deleteTask(taskId);
     }
     onChangeTask(taskId, newTitle){
         const targetTask = {...this.props.tasks.find(t => t.id === taskId)};
         targetTask.title = newTitle;
-        return editExistingTask(targetTask);
+        this.props.editExistingTaskAsync(targetTask);
     }
     render(){
         return <div className="taskContainer">
@@ -27,4 +28,6 @@ class TaskContainer extends React.Component{
                 </div>
     }
 }
-export default TaskContainer;
+
+function mapDispatchToProps(dispatch) {  return bindActionCreators({editExistingTaskAsync}, dispatch)}
+export default connect(null, mapDispatchToProps )(TaskContainer);

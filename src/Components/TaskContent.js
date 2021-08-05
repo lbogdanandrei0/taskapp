@@ -3,23 +3,22 @@ import TaskContainer from "./TaskContainer";
 import React from "react";
 import { bindActionCreators } from 'redux'
 import {connect} from "react-redux";
-import { addNewTask, deleteExistingTask} from "../Util/DataHelper";
-import {fetchTasks, addNewTaskRedux, editExistingTaskRedux, deleteExistingTaskRedux} from "../Redux/actions";
+import {fetchTasksAsync, addNewTaskAsync, editExistingTaskAsync, deleteExistingTaskAsync} from "../Redux/actions";
 
 class TaskContent extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     componentDidMount(){
-        this.props.fetchTasks();
+        this.props.fetchTasksAsync();
         //getAllTasks().then((response) => {this.props.fetchTasksRedux(response.data); console.log(this.props.tasks)});
     }
-    async addTask(){
+    addTask(){
         const textInput = document.getElementById("taskTitleInput");
         if(textInput.value === '')
             alert("Task text is mandatory");
         else{
-            this.props.addNewTaskRedux(textInput.value);
+            this.props.addNewTaskAsync(textInput.value);
             // addNewTask(textInput.value)
             // .then((response) => {
             //     this.props.addNewTaskRedux(response.data);
@@ -30,13 +29,14 @@ class TaskContent extends React.Component{
             textInput.value = null;
         }
     }
-    async deleteTask(taskId){
+    deleteTask(taskId){
         const toDelete = this.props.tasks.find(t => t.id === taskId)
-        if(deleteExistingTask(toDelete)){
-            this.props.deleteExistingTaskRedux(toDelete);
-        }else{
-            alert("Something went wrong with deleting the task " + toDelete.title);
-        }
+        this.props.deleteExistingTaskAsync(toDelete);
+        // if(deleteExistingTask(toDelete)){
+        //     this.props.deleteExistingTaskAsync(toDelete);
+        // }else{
+        //     alert("Something went wrong with deleting the task " + toDelete.title);
+        // }
     }
     render(){
         return (           
@@ -55,5 +55,5 @@ class TaskContent extends React.Component{
 }
 
 function mapStateToProps(state) {  return { tasks: state.tasks }}
-function mapDispatchToProps(dispatch) {  return bindActionCreators({ fetchTasks,  addNewTaskRedux, editExistingTaskRedux, deleteExistingTaskRedux}, dispatch)}
+function mapDispatchToProps(dispatch) {  return bindActionCreators({ fetchTasksAsync,  addNewTaskAsync, editExistingTaskAsync, deleteExistingTaskAsync}, dispatch)}
 export default connect(mapStateToProps, mapDispatchToProps )(TaskContent);

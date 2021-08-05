@@ -2,7 +2,6 @@ import appReducer from "./reducer";
 import { createStore, applyMiddleware  } from "redux";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "../Saga/sagas";
-import { fetchTasks } from "./actions";
 
 const sagaMiddleware = createSagaMiddleware();
 
